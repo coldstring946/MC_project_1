@@ -17,7 +17,7 @@
     </properties>
 
     <dependencies>
-        <!-- Magma Core - installed locally -->
+        <!-- Magma Core - now installed locally -->
         <dependency>
             <groupId>uk.gov.gchq.magma-core</groupId>
             <artifactId>core</artifactId>
@@ -69,7 +69,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>uk.gov.gchq.magma.xml.analyzer.TestRunner</mainClass>
+                    <mainClass>FileSampler</mainClass>
                 </configuration>
             </plugin>
         </plugins>
