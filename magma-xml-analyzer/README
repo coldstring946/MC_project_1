@@ -1,0 +1,145 @@
+# MC_project_1 Setup Guide
+
+## Overview
+This project workspace contains MagmaCore (HQDM framework) and custom XML analysis tools for working with structured data and document processing.
+
+## Prerequisites
+- **Java 21** ✅ (Confirmed installed)
+- **Maven** ✅ (Confirmed installed) 
+- **Git** (Required for cloning repositories)
+- **Windows 10/11** (Commands written for Windows)
+
+## Hardware
+- Desktop: i9 with GeForce 4090
+- Laptop: i9 with GeForce 4080
+- CUDA capabilities available for ML tasks
+
+## Project Structure
+```
+C:\MC_project_1\
+├── MagmaCore\              # Local copy of GCHQ MagmaCore (HQDM framework)
+├── magma-xml-analyzer\     # Custom XML document analyzer
+├── README.md               # This file
+└── docs\                   # Additional documentation
+```
+
+## Installation Steps
+
+### 1. Create Project Directory
+```batch
+cd C:\
+mkdir MC_project_1
+cd MC_project_1
+```
+
+### 2. Clone and Secure MagmaCore
+```batch
+# Clone the repository
+git clone https://github.com/gchq/MagmaCore.git
+
+# Enter the directory
+cd MagmaCore
+
+# Remove remote origin to prevent accidental pushes
+git remote remove origin
+
+# Verify no remotes configured (should show nothing)
+git remote -v
+
+# Check current branch
+git branch
+```
+
+### 3. Build MagmaCore
+```batch
+# Clean build and install to local Maven repository
+mvn clean install
+
+# Verify build success - look for "BUILD SUCCESS"
+```
+
+### 4. Create XML Analyzer Project
+```batch
+# Return to parent directory
+cd ..
+
+# Create analyzer project structure
+mkdir magma-xml-analyzer
+cd magma-xml-analyzer
+
+# Create Maven project structure
+mkdir src\main\java\uk\gov\gchq\magma\xml\analyzer
+mkdir src\test\java
+mkdir target
+```
+
+### 5. Verify Installation
+```batch
+# Check Java version
+java -version
+
+# Check Maven version
+mvn -version
+
+# Verify MagmaCore built successfully
+cd C:\MC_project_1\MagmaCore
+mvn test
+
+# Return to project root
+cd C:\MC_project_1
+```
+
+## Next Steps
+
+### Set Up XML Analyzer Maven Configuration
+The `magma-xml-analyzer` project will need a `pom.xml` file that references the local MagmaCore installation.
+
+### Development Approach
+- **Iterative development**: Small modules, test each section
+- **Simple components**: Focus on a few tasks per module
+- **GPU utilization**: Plan for CUDA/ML integration where appropriate
+
+## Troubleshooting
+
+### If MagmaCore build fails:
+```batch
+# Clean everything and try again
+cd C:\MC_project_1\MagmaCore
+mvn clean
+mvn compile
+mvn test
+mvn install
+```
+
+### If Java/Maven issues:
+```batch
+# Check JAVA_HOME
+echo %JAVA_HOME%
+
+# Check Maven settings
+mvn help:system
+```
+
+### If Git issues:
+```batch
+# Check Git configuration
+git config --list
+
+# Verify no remotes on MagmaCore
+cd C:\MC_project_1\MagmaCore
+git remote -v
+```
+
+## Security Notes
+- MagmaCore remote origin has been removed to prevent accidental pushes to GCHQ repository
+- Local changes will only affect your local copy
+- Original MagmaCore repository remains unmodified
+
+## Documentation
+- This README serves as the main setup guide
+- Additional documentation will be added to `docs/` folder
+- GitHub will track all project changes and decisions
+- Consider adding development notebooks for experiments
+
+## Contact/Issues
+Document any setup issues or questions in project issues or development logs.
